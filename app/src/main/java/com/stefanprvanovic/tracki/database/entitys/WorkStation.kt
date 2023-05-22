@@ -4,6 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class WorkPlace(
-    @PrimaryKey(autoGenerate = true) val id: Int
+data class WorkStation(
+    @PrimaryKey(autoGenerate = true) val id: Int,
+    val workStationName: String
 )

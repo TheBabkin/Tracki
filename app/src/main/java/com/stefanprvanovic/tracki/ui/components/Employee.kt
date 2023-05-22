@@ -24,9 +24,10 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.stefanprvanovic.tracki.database.entitys.Personnel
 
 @Composable
-fun Employee() {
+fun Employee(personnel: Personnel) {
 
     val radioOptions = listOf("Prisutan", "Odsutan")
 
@@ -34,18 +35,22 @@ fun Employee() {
         mutableStateOf(radioOptions[0])
     }
 
-    ElevatedCard(modifier = Modifier.fillMaxWidth()) {
+    ElevatedCard(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp)
+    ) {
         Column(modifier = Modifier.padding(8.dp)) {
             Text(
-                text = "Marko Markovic",
+                text = personnel.fullName,
                 fontWeight = FontWeight.Bold,
-                style = MaterialTheme.typography.headlineLarge
+                style = MaterialTheme.typography.headlineSmall
             )
-            Text(text = "1809778781069")
+            Text(text = personnel.uniqueNumber.toString())
             Text(
-                text = "Blister 18",
+                text = personnel.workStation,
                 fontWeight = FontWeight.Bold,
-                style = MaterialTheme.typography.headlineMedium
+                style = MaterialTheme.typography.headlineSmall
             )
 
             Spacer(modifier = Modifier.size(8.dp))
@@ -64,10 +69,11 @@ fun Employee() {
                             role = Role.RadioButton
                         ),
                         verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Start
                     ) {
                         RadioButton(
                             selected = (selectedOption == option),
-                            onClick = { }
+                            onClick = { selectedOption = option }
                         )
                         Text(text = option)
                     }
@@ -77,8 +83,15 @@ fun Employee() {
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 private fun EmployeePreview() {
-    Employee()
+    Employee(
+        Personnel(
+            id = 10,
+            fullName = "Sophia Thompson",
+            uniqueNumber = 1023456789012,
+            workStation = "Office A"
+        )
+    )
 }

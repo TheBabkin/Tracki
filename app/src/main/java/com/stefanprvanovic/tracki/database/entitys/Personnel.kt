@@ -5,5 +5,8 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class Personnel(
-    @PrimaryKey(autoGenerate = true) val id: Int
+    @PrimaryKey(autoGenerate = true) val id: Int,
+    val fullName: String,
+    val uniqueNumber: Long,
+    val workStation: String
 )

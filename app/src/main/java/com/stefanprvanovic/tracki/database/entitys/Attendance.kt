@@ -5,5 +5,8 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class Attendance(
-    @PrimaryKey(autoGenerate = true) val id: Int
+    @PrimaryKey(autoGenerate = true) val id: Int,
+    val personnelId: Int,
+    val attendance: Boolean,
+    val reasonForAbsence: String
 )
